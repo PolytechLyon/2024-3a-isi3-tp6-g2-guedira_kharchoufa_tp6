@@ -1,18 +1,22 @@
 package fr.polytech.sim.transport;
 
-import fr.polytech.sim.log.ConsoleLogger;
 import fr.polytech.sim.log.Logger;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Set;
+import fr.polytech.sim.log.LoggerFactory;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Vehicle abstraction.
  */
 public abstract class Vehicle implements MobileObject {
 
-    private final Logger logger = new ConsoleLogger("Vehicle");
-    protected final Set<MobileObject> components = new HashSet<>();
+    private final Logger logger;
+    protected final List<MobileObject> components = new ArrayList<>();
+
+    public Vehicle() {
+        this.logger = LoggerFactory.getLogger("VehicleLogger");
+    }
 
     /**
      * Force applied to push the vehicle.

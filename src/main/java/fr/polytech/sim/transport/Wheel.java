@@ -1,10 +1,8 @@
 package fr.polytech.sim.transport;
 
 import fr.polytech.sim.Clock;
-import fr.polytech.sim.cycling.Bike;
-import fr.polytech.sim.log.ConsoleLogger;
 import fr.polytech.sim.log.Logger;
-import java.util.Objects;
+import fr.polytech.sim.log.LoggerFactory;
 
 /**
  * A wheel that can be used with different vehicle types.
@@ -12,17 +10,17 @@ import java.util.Objects;
 public class Wheel implements MobileObject {
     private static final double DEFAULT_MASSE = 10;
 
-    private final Logger logger = new ConsoleLogger("Wheel");
-    private final Clock clock = new Clock();
-    private final Bike drive;
+    private final Logger logger;
+    private final Clock clock = Clock.getInstance();
+    private final Vehicle drive;
 
     /**
      * Constructor.
      *
      * @param drive  the object providing push power.
      */
-    public Wheel(Bike drive) {
-        Objects.requireNonNull(drive, "Bike must not be null.");
+    public Wheel(Vehicle drive) {
+        this.logger = LoggerFactory.getLogger("WheelLogger");
         this.drive = drive;
     }
 
